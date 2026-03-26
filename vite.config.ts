@@ -9,7 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: process.env.GITHUB_ACTIONS === 'true' ? '/EryxAi-Home/' : '/',
+  base: process.env.GITHUB_ACTIONS === 'true' 
+    ? (process.env.CUSTOM_DOMAIN ? '/' : '/EryxAi-Home/') 
+    : '/',
   server: {
     port: 3000,
     host: true,

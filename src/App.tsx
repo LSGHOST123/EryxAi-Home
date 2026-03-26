@@ -487,9 +487,14 @@ const Footer = () => (
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const getBasename = () => {
-  return window.location.hostname.includes('github.io') 
-    ? '/EryxAi-Home' 
-    : '';
+  const hostname = window.location.hostname;
+  const isGithubPages = hostname.includes('github.io');
+  const hasCustomDomain = !hostname.includes('github.io') && !hostname.includes('localhost');
+  
+  if (isGithubPages && !hasCustomDomain) {
+    return '/EryxAi-Home';
+  }
+  return '';
 };
 
 const Home = () => {
