@@ -484,7 +484,15 @@ const Footer = () => (
   </footer>
 );
 
-export default function App() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+const getBasename = () => {
+  return window.location.hostname.includes('github.io') 
+    ? '/ERYX-AI' 
+    : '';
+};
+
+const Home = () => {
   return (
     <div className="relative min-h-screen">
       <NeuralBackground />
@@ -529,5 +537,15 @@ export default function App() {
 
       <Footer />
     </div>
+  );
+};
+
+export default function App() {
+  return (
+    <BrowserRouter basename={getBasename()}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
