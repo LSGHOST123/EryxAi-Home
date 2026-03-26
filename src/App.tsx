@@ -487,12 +487,10 @@ const Footer = () => (
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const getBasename = () => {
-  const hostname = window.location.hostname;
-  const isGithubPages = hostname.includes('github.io');
-  const hasCustomDomain = !hostname.includes('github.io') && !hostname.includes('localhost');
-  
-  if (isGithubPages && !hasCustomDomain) {
-    return '/EryxAi-Home';
+  const { hostname, pathname } = window.location;
+  if (hostname.includes('github.io')) {
+    const repoMatch = pathname.match(/^\/([^/]+)/);
+    return repoMatch ? `/${repoMatch[1]}` : '';
   }
   return '';
 };
