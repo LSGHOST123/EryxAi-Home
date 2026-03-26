@@ -488,7 +488,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const getBasename = () => {
   return window.location.hostname.includes('github.io') 
-    ? '/ERYX-AI' 
+    ? '/EryxAi-Home' 
     : '';
 };
 
