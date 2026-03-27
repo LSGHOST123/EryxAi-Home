@@ -16,7 +16,9 @@ import {
   Image as ImageIcon,
   Music,
   Code,
-  Sparkles
+  Sparkles,
+  Trophy,
+  BarChart3
 } from 'lucide-react';
 
 // --- Components ---
@@ -332,6 +334,70 @@ const ModelsSection = () => {
   );
 };
 
+const ComparisonSection = () => {
+  const data = [
+    { name: "ERYX 1.0 PRO", rank: "1º", intelligence: "99%", speed: "Ultra", vision: "Avançado", search: "Real-time", highlight: true },
+    { name: "GEMINI 3.1 PRO", rank: "2º", intelligence: "94%", speed: "Rápido", vision: "Básico", search: "Limitado", highlight: false },
+    { name: "GPT 5.4", rank: "3º", intelligence: "91%", speed: "Médio", vision: "Básico", search: "Limitado", highlight: false },
+    { name: "QWEN 3.5", rank: "4º", intelligence: "89%", speed: "Rápido", vision: "Básico", search: "Não", highlight: false },
+    { name: "GLM 5", rank: "5º", intelligence: "87%", speed: "Médio", vision: "Básico", search: "Não", highlight: false },
+    { name: "DEEPSEEK", rank: "6º", intelligence: "85%", speed: "Rápido", vision: "Não", search: "Não", highlight: false },
+    { name: "LLAMA", rank: "7º", intelligence: "82%", speed: "Médio", vision: "Não", search: "Não", highlight: false },
+  ];
+
+  return (
+    <section id="comparacao" className="py-32 px-6 max-w-5xl mx-auto">
+      <div className="text-center mb-20">
+        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 uppercase">
+          BENCHMARK <span className="text-accent">GLOBAL.</span>
+        </h2>
+        <p className="text-text-dim max-w-2xl mx-auto text-lg">
+          Comparação técnica baseada em testes de processamento neural e resposta cognitiva.
+        </p>
+      </div>
+
+      <div className="glass rounded-[2rem] overflow-hidden border-white/5 relative">
+        <div className="grid grid-cols-4 md:grid-cols-7 p-6 bg-white/5 text-[10px] font-black uppercase tracking-widest text-text-dim border-b border-white/5">
+          <div className="col-span-2 md:col-span-2">Modelo</div>
+          <div className="hidden md:block">Rank</div>
+          <div>Inteligência</div>
+          <div>Velocidade</div>
+          <div className="hidden md:block">Vision</div>
+          <div className="hidden md:block">Web Search</div>
+        </div>
+        
+        {data.map((item, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className={`grid grid-cols-4 md:grid-cols-7 p-8 items-center border-b border-white/5 last:border-0 transition-all ${item.highlight ? 'bg-accent/5 relative' : ''}`}
+          >
+            {item.highlight && (
+              <div className="absolute left-0 top-0 w-1 h-full bg-accent shadow-[0_0_20px_rgba(34,197,94,0.8)]" />
+            )}
+            <div className={`col-span-2 md:col-span-2 font-black text-lg md:text-xl ${item.highlight ? 'text-accent' : ''} flex items-center gap-3`}>
+              {item.highlight && <Trophy size={20} className="text-accent shrink-0" />}
+              {item.name}
+            </div>
+            <div className="hidden md:block font-black text-2xl italic text-white/20">{item.rank}</div>
+            <div className="font-bold text-sm md:text-base">{item.intelligence}</div>
+            <div className="font-bold text-sm md:text-base">{item.speed}</div>
+            <div className="hidden md:block font-bold text-sm md:text-base">{item.vision}</div>
+            <div className="hidden md:block font-bold text-sm md:text-base">{item.search}</div>
+          </motion.div>
+        ))}
+      </div>
+      
+      <div className="mt-12 flex items-center justify-center gap-4 text-[10px] font-black uppercase tracking-[3px] text-white/20">
+        <BarChart3 size={14} /> Dados atualizados em Março de 2026
+      </div>
+    </section>
+  );
+};
+
 const RoadmapSection = () => {
   const phases = [
     { year: "v1.0 (Atual)", title: "Lançamento", desc: "Modelos FAST e PRO com Vision e Web Search integrados." },
@@ -505,6 +571,7 @@ const Home = () => {
         <Hero />
         <BentoGrid />
         <ModelsSection />
+        <ComparisonSection />
         <RoadmapSection />
         <FutureFeatures />
         <FAQ />
