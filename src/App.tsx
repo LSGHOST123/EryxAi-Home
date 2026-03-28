@@ -83,7 +83,7 @@ const Navbar = () => {
           <motion.a 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://pay.kirvano.com/7c527ee5-c1a4-468e-b9fc-4dcd44c496b1" 
+            href="#modelos" 
             className="bg-accent text-black px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-accent/20"
           >
             Acessar Agora
@@ -108,7 +108,7 @@ const Navbar = () => {
                 {item}
               </a>
             ))}
-            <a href="https://pay.kirvano.com/7c527ee5-c1a4-468e-b9fc-4dcd44c496b1" className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest">Acessar Agora</a>
+            <a href="#modelos" className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest">Acessar Agora</a>
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,7 +149,7 @@ const Hero = () => {
             <motion.a 
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              href="https://pay.kirvano.com/7c527ee5-c1a4-468e-b9fc-4dcd44c496b1" 
+              href="#modelos" 
               className="w-full sm:w-auto bg-accent text-black px-10 py-5 rounded-2xl font-black text-lg uppercase tracking-wider shadow-[0_0_40px_rgba(34,197,94,0.3)] flex items-center justify-center gap-3"
             >
               Ativar ERYX PRO <ArrowRight size={20} />
@@ -356,39 +356,41 @@ const ComparisonSection = () => {
         </p>
       </div>
 
-      <div className="glass rounded-[2rem] overflow-hidden border-white/5 relative">
-        <div className="grid grid-cols-4 md:grid-cols-7 p-6 bg-white/5 text-[10px] font-black uppercase tracking-widest text-text-dim border-b border-white/5">
-          <div className="col-span-2 md:col-span-2">Modelo</div>
-          <div className="hidden md:block">Rank</div>
-          <div>Inteligência</div>
-          <div>Velocidade</div>
-          <div className="hidden md:block">Vision</div>
-          <div className="hidden md:block">Web Search</div>
+      <div className="glass rounded-[2rem] overflow-x-auto border-white/5 relative">
+        <div className="min-w-[800px] md:min-w-0">
+          <div className="grid grid-cols-7 p-6 bg-white/5 text-[10px] font-black uppercase tracking-widest text-text-dim border-b border-white/5">
+            <div className="col-span-2">Modelo</div>
+            <div>Rank</div>
+            <div>Inteligência</div>
+            <div>Velocidade</div>
+            <div>Vision</div>
+            <div>Web Search</div>
+          </div>
+          
+          {data.map((item, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className={`grid grid-cols-7 p-8 items-center border-b border-white/5 last:border-0 transition-all ${item.highlight ? 'bg-accent/5 relative' : ''}`}
+            >
+              {item.highlight && (
+                <div className="absolute left-0 top-0 w-1 h-full bg-accent shadow-[0_0_20px_rgba(34,197,94,0.8)]" />
+              )}
+              <div className={`col-span-2 font-black text-lg md:text-xl ${item.highlight ? 'text-accent' : ''} flex items-center gap-3`}>
+                {item.highlight && <Trophy size={20} className="text-accent shrink-0" />}
+                {item.name}
+              </div>
+              <div className="font-black text-2xl italic text-white/20">{item.rank}</div>
+              <div className="font-bold text-sm md:text-base">{item.intelligence}</div>
+              <div className="font-bold text-sm md:text-base">{item.speed}</div>
+              <div className="font-bold text-sm md:text-base">{item.vision}</div>
+              <div className="font-bold text-sm md:text-base">{item.search}</div>
+            </motion.div>
+          ))}
         </div>
-        
-        {data.map((item, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className={`grid grid-cols-4 md:grid-cols-7 p-8 items-center border-b border-white/5 last:border-0 transition-all ${item.highlight ? 'bg-accent/5 relative' : ''}`}
-          >
-            {item.highlight && (
-              <div className="absolute left-0 top-0 w-1 h-full bg-accent shadow-[0_0_20px_rgba(34,197,94,0.8)]" />
-            )}
-            <div className={`col-span-2 md:col-span-2 font-black text-lg md:text-xl ${item.highlight ? 'text-accent' : ''} flex items-center gap-3`}>
-              {item.highlight && <Trophy size={20} className="text-accent shrink-0" />}
-              {item.name}
-            </div>
-            <div className="hidden md:block font-black text-2xl italic text-white/20">{item.rank}</div>
-            <div className="font-bold text-sm md:text-base">{item.intelligence}</div>
-            <div className="font-bold text-sm md:text-base">{item.speed}</div>
-            <div className="hidden md:block font-bold text-sm md:text-base">{item.vision}</div>
-            <div className="hidden md:block font-bold text-sm md:text-base">{item.search}</div>
-          </motion.div>
-        ))}
       </div>
       
       <div className="mt-12 flex items-center justify-center gap-4 text-[10px] font-black uppercase tracking-[3px] text-white/20">
@@ -595,7 +597,7 @@ const Home = () => {
               <motion.a 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="https://pay.kirvano.com/7c527ee5-c1a4-468e-b9fc-4dcd44c496b1" 
+                href="#modelos" 
                 className="inline-flex bg-accent text-black px-16 py-6 rounded-2xl font-black text-xl uppercase tracking-wider shadow-[0_0_50px_rgba(34,197,94,0.4)] hover:bg-white transition-all"
               >
                 Ativar ERYX PRO Agora
