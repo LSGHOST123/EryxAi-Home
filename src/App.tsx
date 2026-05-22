@@ -83,7 +83,9 @@ const Navbar = () => {
           <motion.a 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#modelos" 
+            href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-accent text-black px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-accent/20"
           >
             Acessar Agora
@@ -108,7 +110,14 @@ const Navbar = () => {
                 {item}
               </a>
             ))}
-            <a href="#modelos" className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest">Acessar Agora</a>
+            <a 
+              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest"
+            >
+              Acessar Agora
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,7 +158,9 @@ const Hero = () => {
             <motion.a 
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              href="#modelos" 
+              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto bg-accent text-black px-10 py-5 rounded-2xl font-black text-lg uppercase tracking-wider shadow-[0_0_40px_rgba(34,197,94,0.3)] flex items-center justify-center gap-3"
             >
               Ativar ERYX PRO <ArrowRight size={20} />
@@ -327,6 +338,20 @@ const ModelsSection = () => {
                 </li>
               ))}
             </ul>
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`mt-8 w-full py-4 rounded-2xl font-black uppercase text-center text-sm tracking-wider transition-all ${
+                model.highlight 
+                  ? 'bg-accent text-black shadow-lg shadow-accent/20' 
+                  : 'glass hover:bg-white/10 text-white'
+              }`}
+            >
+              {model.cta}
+            </motion.a>
           </motion.div>
         ))}
       </div>
@@ -540,8 +565,16 @@ const Footer = () => (
         </div>
       </div>
     </div>
+
+    {/* Servidor Hardware Status */}
+    <div className="max-w-7xl mx-auto mt-16 p-6 rounded-2xl border border-[#eab308]/10 bg-[#eab308]/5 text-xs text-[#eab308]/80 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+      <Zap size={16} className="animate-pulse text-[#eab308] shrink-0" />
+      <span>
+        <strong>Status do Protocolo:</strong> Atualmente operando em servidor básico (Intel Xeon de entrada). Upgrade agendado e iminente para aceleração por GPU dedicada <strong>NVIDIA T4</strong> para velocidade e processamento neural instantâneo.
+      </span>
+    </div>
     
-    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
       <p className="text-[10px] text-text-dim/50 uppercase tracking-widest">
         © 2026 ERYX AI. Todos os direitos reservados.
       </p>
@@ -597,7 +630,9 @@ const Home = () => {
               <motion.a 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="#modelos" 
+                href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex bg-accent text-black px-16 py-6 rounded-2xl font-black text-xl uppercase tracking-wider shadow-[0_0_50px_rgba(34,197,94,0.4)] hover:bg-white transition-all"
               >
                 Ativar ERYX PRO Agora
