@@ -48,7 +48,11 @@ const NeuralBackground = () => {
   );
 };
 
-const Navbar = () => {
+interface NavbarProps {
+  onOpenAccess: (type: 'FAST' | 'PRO') => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onOpenAccess }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -80,19 +84,17 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <motion.a 
+          <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-accent text-black px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-accent/20"
+            onClick={() => onOpenAccess('FAST')}
+            className="bg-accent text-black px-6 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-accent/20 cursor-pointer text-center"
           >
             Acessar Agora
-          </motion.a>
+          </motion.button>
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-white cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -110,14 +112,12 @@ const Navbar = () => {
                 {item}
               </a>
             ))}
-            <a 
-              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest"
+            <button 
+              onClick={() => { setIsOpen(false); onOpenAccess('FAST'); }}
+              className="bg-accent text-black py-4 rounded-xl font-bold text-center text-sm uppercase tracking-widest cursor-pointer w-full"
             >
               Acessar Agora
-            </a>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -125,7 +125,7 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') => void }) => {
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 overflow-hidden">
       <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -155,16 +155,14 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <motion.a 
+            <motion.button 
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-accent text-black px-10 py-5 rounded-2xl font-black text-lg uppercase tracking-wider shadow-[0_0_40px_rgba(34,197,94,0.3)] flex items-center justify-center gap-3"
+              onClick={() => onOpenAccess('PRO')}
+              className="w-full sm:w-auto bg-accent text-black px-10 py-5 rounded-2xl font-black text-lg uppercase tracking-wider shadow-[0_0_40px_rgba(34,197,94,0.3)] flex items-center justify-center gap-3 cursor-pointer"
             >
               Ativar ERYX PRO <ArrowRight size={20} />
-            </motion.a>
+            </motion.button>
             <a href="#tecnologia" className="w-full sm:w-auto px-10 py-5 rounded-2xl font-bold text-lg uppercase tracking-wider glass hover:bg-white/10 transition-all flex items-center justify-center gap-3">
               Ver Tecnologia
             </a>
@@ -278,7 +276,7 @@ const BentoGrid = () => {
   );
 };
 
-const ModelsSection = () => {
+const ModelsSection = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') => void }) => {
   const models = [
     {
       name: "ERYX FAST",
@@ -338,20 +336,18 @@ const ModelsSection = () => {
                 </li>
               ))}
             </ul>
-            <motion.a 
+            <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mt-8 w-full py-4 rounded-2xl font-black uppercase text-center text-sm tracking-wider transition-all ${
+              onClick={() => onOpenAccess(model.name.includes("PRO") ? 'PRO' : 'FAST')}
+              className={`mt-8 w-full py-4 rounded-2xl font-black uppercase text-center text-sm tracking-wider transition-all cursor-pointer ${
                 model.highlight 
                   ? 'bg-accent text-black shadow-lg shadow-accent/20' 
                   : 'glass hover:bg-white/10 text-white'
               }`}
             >
               {model.cta}
-            </motion.a>
+            </motion.button>
           </motion.div>
         ))}
       </div>
@@ -596,16 +592,179 @@ const getBasename = () => {
   return '';
 };
 
+interface AccessPanelModalProps {
+  type: 'FAST' | 'PRO' | null;
+  onClose: () => void;
+  onTypeChange: (type: 'FAST' | 'PRO') => void;
+}
+
+const AccessPanelModal: React.FC<AccessPanelModalProps> = ({ type, onClose, onTypeChange }) => {
+  if (!type) return null;
+
+  const data = {
+    FAST: {
+      name: "ERYX 1.0 FAST",
+      badge: "Gratuito & Ilimitado",
+      desc: "Modelo ideal para tarefas gerais de alta velocidade e análise visual ágil.",
+      safetensors: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast",
+      gguf: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast-GGUF"
+    },
+    PRO: {
+      name: "ERYX 1.0 PRO",
+      badge: "Elite & Raciocínio Profundo",
+      desc: "O poder neural absoluto para tarefas de altíssima complexidade, raciocínio avançado e inferência de ponta.",
+      safetensors: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Pro",
+      gguf: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Pro-GGUF"
+    }
+  };
+
+  const current = data[type];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-black/85 backdrop-blur-xl cursor-pointer"
+      />
+
+      {/* Modal Window */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="relative w-full max-w-xl bg-[#030703]/95 border border-accent/20 rounded-[2.5rem] p-8 md:p-10 shadow-[0_0_50px_rgba(34,197,94,0.15)] overflow-hidden z-10"
+      >
+        {/* Subtle background glow */}
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+
+        {/* Close Button */}
+        <button 
+          type="button"
+          onClick={onClose}
+          className="absolute top-6 right-6 text-white/50 hover:text-accent p-2 rounded-full hover:bg-white/5 transition-all cursor-pointer"
+        >
+          <X size={20} />
+        </button>
+
+        {/* Header */}
+        <div className="mb-8">
+          <div className="inline-flex gap-2 mb-3">
+            <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider ${
+              type === 'PRO' ? 'bg-accent/15 text-accent border border-accent/20' : 'bg-white/10 text-white'
+            }`}>
+              {current.badge}
+            </span>
+          </div>
+          <h3 className="text-3xl font-black mb-2 tracking-tight text-white">
+            {current.name}
+          </h3>
+          <p className="text-sm text-text-dim max-w-md">
+            {current.desc}
+          </p>
+        </div>
+
+        {/* Model Switcher tabs */}
+        <div className="grid grid-cols-2 gap-2 bg-white/5 p-1 rounded-2xl mb-8 border border-white/5">
+          <button 
+            type="button"
+            onClick={() => onTypeChange('FAST')}
+            className={`py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
+              type === 'FAST' ? 'bg-accent text-black shadow-lg shadow-accent/10 font-bold' : 'text-white/60 hover:text-white font-bold'
+            }`}
+          >
+            Eryx Fast
+          </button>
+          <button 
+            type="button"
+            onClick={() => onTypeChange('PRO')}
+            className={`py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
+              type === 'PRO' ? 'bg-accent text-black shadow-lg shadow-accent/10 font-bold' : 'text-white/60 hover:text-white font-bold'
+            }`}
+          >
+            Eryx Pro
+          </button>
+        </div>
+
+        {/* Format Options */}
+        <div className="space-y-4">
+          {/* Option 1: GGUF */}
+          <motion.a 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            href={current.gguf}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative p-6 rounded-3xl border border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all group overflow-hidden"
+          >
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-accent text-black px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest animate-pulse">
+              <Zap size={8} /> Mais Rápido & Leve
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-accent/25 flex items-center justify-center text-accent shrink-0 mt-0.5 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                <Cpu size={22} />
+              </div>
+              <div>
+                <h4 className="font-extrabold text-lg text-accent flex items-center gap-2">
+                  Versão GGUF <Sparkles size={14} className="text-accent" />
+                </h4>
+                <p className="text-xs text-text-dim leading-relaxed mt-1 group-hover:text-white transition-colors">
+                  Altamente recomendada localmente. O formato <strong>GGUF é mais rápido e leve</strong>, garantindo máxima otimização com menor consumo de memória RAM/VRAM.
+                </p>
+              </div>
+            </div>
+          </motion.a>
+
+          {/* Option 2: SAFETENSORS */}
+          <motion.a 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            href={current.safetensors}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-6 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all group"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white/60 shrink-0 mt-0.5">
+                <Shield size={22} />
+              </div>
+              <div>
+                <h4 className="font-extrabold text-lg text-white group-hover:text-accent transition-colors">
+                  Versão SAFETENSORS
+                </h4>
+                <p className="text-xs text-text-dim leading-relaxed mt-1 group-hover:text-white/80 transition-colors">
+                  Modelo completo sem quantização (.safetensors). Ideal para inferência em FP16 ou fine-tuning em placas dedicadas de alta performance.
+                </p>
+              </div>
+            </div>
+          </motion.a>
+        </div>
+
+        {/* Helper note */}
+        <p className="text-center text-[10px] uppercase tracking-widest text-text-dim/40 mt-8">
+          Hugging Face Hub • Conexão Segura Ativa
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
 const Home = () => {
+  const [accessModalType, setAccessModalType] = useState<'FAST' | 'PRO' | null>(null);
+
   return (
     <div className="relative min-h-screen">
       <NeuralBackground />
-      <Navbar />
+      <Navbar onOpenAccess={(type) => setAccessModalType(type)} />
       
       <main>
-        <Hero />
+        <Hero onOpenAccess={(type) => setAccessModalType(type)} />
         <BentoGrid />
-        <ModelsSection />
+        <ModelsSection onOpenAccess={(type) => setAccessModalType(type)} />
         <ComparisonSection />
         <RoadmapSection />
         <FutureFeatures />
@@ -627,22 +786,30 @@ const Home = () => {
               <p className="text-xl md:text-2xl text-text-dim mb-12 max-w-2xl mx-auto">
                 Não fique para trás na maior revolução tecnológica da história. Ative seu protocolo neural hoje.
               </p>
-              <motion.a 
+              <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex bg-accent text-black px-16 py-6 rounded-2xl font-black text-xl uppercase tracking-wider shadow-[0_0_50px_rgba(34,197,94,0.4)] hover:bg-white transition-all"
+                onClick={() => setAccessModalType('PRO')}
+                className="inline-flex bg-accent text-black px-16 py-6 rounded-2xl font-black text-xl uppercase tracking-wider shadow-[0_0_50px_rgba(34,197,94,0.4)] hover:bg-white transition-all cursor-pointer"
               >
                 Ativar ERYX PRO Agora
-              </motion.a>
+              </motion.button>
             </motion.div>
           </div>
         </section>
       </main>
 
       <Footer />
+
+      <AnimatePresence>
+        {accessModalType && (
+          <AccessPanelModal 
+            type={accessModalType} 
+            onClose={() => setAccessModalType(null)} 
+            onTypeChange={(type) => setAccessModalType(type)} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
