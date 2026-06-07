@@ -281,8 +281,9 @@ const ModelsSection = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') 
     {
       name: "ERYX FAST",
       price: "GRÁTIS",
+      period: "PARA SEMPRE / ILIMITADO",
       features: [
-        "Uso Ilimitado",
+        "Uso Totalmente Ilimitado",
         "Velocidade Instantânea",
         "Vision Mode Básico",
         "Web Search Ativo",
@@ -293,14 +294,15 @@ const ModelsSection = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') 
     },
     {
       name: "ERYX PRO",
-      price: "ELITE",
+      price: "R$ 15-25",
+      period: "POR MÊS / ILIMITADO",
       features: [
-        "Cota Grátis Diária (Ilimitado)",
-        "Raciocínio Profundo",
-        "Vision Mode Avançado",
-        "Web Search Premium",
-        "Prioridade de Processamento",
-        "Acesso Antecipado a Novidades"
+        "Acesso Pro 100% Ilimitado",
+        "Raciocínio Profundo Extremo",
+        "Vision Mode Avançado Completo",
+        "Web Search Premium e Dedicado",
+        "Prioridade de Processamento Global",
+        "Acesso Antecipado a Novas Versões"
       ],
       cta: "Ativar PRO",
       highlight: true
@@ -327,6 +329,7 @@ const ModelsSection = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') 
             <div className="mb-8">
               <h3 className="text-3xl font-black mb-2">{model.name}</h3>
               <div className="text-accent font-black text-5xl italic tracking-tighter">{model.price}</div>
+              <div className="text-xs text-text-dim/60 font-black uppercase tracking-widest mt-2">{model.period}</div>
             </div>
             <ul className="space-y-4 mb-4 flex-1">
               {model.features.map((feature, j) => (
@@ -358,12 +361,12 @@ const ModelsSection = ({ onOpenAccess }: { onOpenAccess: (type: 'FAST' | 'PRO') 
 const ComparisonSection = () => {
   const data = [
     { name: "ERYX 1.0 PRO", rank: "1º", intelligence: "99%", speed: "Ultra", vision: "Avançado", search: "Real-time", highlight: true },
-    { name: "GEMINI 3.1 PRO", rank: "2º", intelligence: "94%", speed: "Rápido", vision: "Básico", search: "Limitado", highlight: false },
-    { name: "GPT 5.4", rank: "3º", intelligence: "91%", speed: "Médio", vision: "Básico", search: "Limitado", highlight: false },
-    { name: "QWEN 3.5", rank: "4º", intelligence: "89%", speed: "Rápido", vision: "Básico", search: "Não", highlight: false },
-    { name: "GLM 5", rank: "5º", intelligence: "87%", speed: "Médio", vision: "Básico", search: "Não", highlight: false },
-    { name: "DEEPSEEK", rank: "6º", intelligence: "85%", speed: "Rápido", vision: "Não", search: "Não", highlight: false },
-    { name: "LLAMA", rank: "7º", intelligence: "82%", speed: "Médio", vision: "Não", search: "Não", highlight: false },
+    { name: "QWEN 3.5 4B", rank: "2º", intelligence: "93%", speed: "Rápido", vision: "Básico", search: "Não", highlight: false },
+    { name: "GEMMA 2 9B", rank: "3º", intelligence: "90%", speed: "Médio", vision: "Básico", search: "Não", highlight: false },
+    { name: "MISTRAL 7B", rank: "4º", intelligence: "86%", speed: "Médio", vision: "Não", search: "Não", highlight: false },
+    { name: "LLAMA 3.1 3B", rank: "5º", intelligence: "84%", speed: "Rápido", vision: "Não", search: "Não", highlight: false },
+    { name: "MINICPM 3B", rank: "6º", intelligence: "81%", speed: "Rápido", vision: "Básico", search: "Não", highlight: false },
+    { name: "PHI-3 3.8B", rank: "7º", intelligence: "78%", speed: "Rápido", vision: "Não", search: "Não", highlight: false },
   ];
 
   return (
@@ -494,8 +497,8 @@ const FutureFeatures = () => {
 
 const FAQ = () => {
   const faqs = [
-    { q: "O ERYX FAST é realmente ilimitado?", a: "Sim! O modelo FAST foi otimizado para ser gratuito e ilimitado para todos os usuários, garantindo acesso democrático à inteligência artificial." },
-    { q: "Como funciona a cota do ERYX PRO?", a: "O ERYX PRO oferece uma cota diária generosa que atende 99% dos usuários profissionais. É praticamente ilimitado para uso humano real." },
+    { q: "O ERYX FAST é realmente ilimitado?", a: "Sim! O modelo FAST foi otimizado para ser gratuito e ilimitado para todos os usuários, garantindo acesso democrático e contínuo à inteligência artificial." },
+    { q: "Como funciona a assinatura do ERYX PRO?", a: "O ERYX PRO é uma versão premium paga por assinatura mensal super acessível, com valor estimado entre R$ 15 e R$ 25. Ao assinar, você tem uso 100% ilimitado, garantindo máxima performance e prioridade neural sem cotas de uso ou bloqueios diários." },
     { q: "O Vision Mode aceita quais arquivos?", a: "Aceitamos imagens (JPG, PNG, WebP) e documentos PDF para análise visual, extração de texto e compreensão de contexto." },
     { q: "A busca na web é em tempo real?", a: "Sim. O ERYX AI se conecta aos principais motores de busca para garantir que você tenha informações atualizadas até o presente momento." }
   ];
@@ -605,14 +608,14 @@ const AccessPanelModal: React.FC<AccessPanelModalProps> = ({ type, onClose, onTy
     FAST: {
       name: "ERYX 1.0 FAST",
       badge: "Gratuito & Ilimitado",
-      desc: "Modelo ideal para tarefas gerais de alta velocidade e análise visual ágil.",
+      desc: "Modelo totalmente gratuito e sem limites, ideal para tarefas gerais de alta velocidade e análise visual ágil.",
       safetensors: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast",
       gguf: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Fast-GGUF"
     },
     PRO: {
       name: "ERYX 1.0 PRO",
-      badge: "Elite & Raciocínio Profundo",
-      desc: "O poder neural absoluto para tarefas de altíssima complexidade, raciocínio avançado e inferência de ponta.",
+      badge: "Pago & Ilimitado (R$ 15 - R$ 25/mês)",
+      desc: "O poder neural absoluto para tarefas de altíssima complexidade, raciocínio avançado e inferência de ponta via assinatura de R$ 15 a R$ 25 p/ mês.",
       safetensors: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Pro",
       gguf: "https://huggingface.co/spaces/LSGHOST/Eryx-1.0-Pro-GGUF"
     }
