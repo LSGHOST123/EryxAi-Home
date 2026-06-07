@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-accent: #22c55e;
   --color-bg-dark: #000000;
@@ -20,6 +24,63 @@ body {
   color: #ffffff;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+}
+
+/* High Contrast Mode Overrides */
+.high-contrast {
+  --color-accent: #22c55e !important;
+  --color-bg-dark: #000000 !important;
+  --color-bg-surface: #000000 !important;
+  --color-text-dim: #ffffff !important;
+  
+  --accent: #22c55e !important;
+  --bg-dark: #000000 !important;
+  --bg-surface: #000000 !important;
+  --text-dim: #ffffff !important;
+}
+
+.high-contrast .glass {
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+  backdrop-filter: none !important;
+}
+
+.high-contrast .glass-accent {
+  background: #000000 !important;
+  border: 2px solid #22c55e !important;
+  backdrop-filter: none !important;
+}
+
+.high-contrast .text-gradient {
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.high-contrast .text-white\/60,
+.high-contrast .text-white\/50,
+.high-contrast .text-white\/40,
+.high-contrast .text-white\/20,
+.high-contrast .text-text-dim\/60,
+.high-contrast .text-text-dim\/50,
+.high-contrast .text-text-dim\/40 {
+  color: #ffffff !important;
+}
+
+.high-contrast .border-white\/5,
+.high-contrast .border-accent\/20,
+.high-contrast .border-accent\/30 {
+  border-color: #ffffff !important;
+  border-width: 1.5px !important;
+}
+
+.high-contrast .bg-white\/5,
+.high-contrast .bg-white\/10 {
+  background-color: #111111 !important;
+}
+
+.high-contrast .opacity-30 {
+  opacity: 0.15 !important;
 }
 
 .text-gradient {
