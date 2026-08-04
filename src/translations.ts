@@ -11,8 +11,6 @@ export interface TranslationSchema {
     title: string;
     titleAccent: string;
     desc: string;
-    descAccent1: string;
-    descAccent2: string;
     ctaPro: string;
     ctaTech: string;
     fastDisclaimer: string;
@@ -98,16 +96,7 @@ export interface TranslationSchema {
     desc: string;
     creator: string;
     navTitle: string;
-    home: string;
-    tech: string;
-    models: string;
-    roadmap: string;
     specsTitle: string;
-    vision: string;
-    search: string;
-    engine: string;
-    statusTitle: string;
-    statusDesc: string;
     copyright: string;
     security: string;
   };
@@ -147,8 +136,6 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
       title: "A INTELIGÊNCIA",
       titleAccent: "DEFINITIVA.",
       desc: "Ultra inteligente, rápida e equipada com Vision Mode e Web Search integrados.",
-      descAccent1: "FAST (Ilimitado)",
-      descAccent2: "PRO (Elite)",
       ctaPro: "Ativar ERYX PRO",
       ctaTech: "Ver Tecnologia",
       fastDisclaimer: "ERYX FAST: 100% Gratuito e Ilimitado para sempre.",
@@ -208,15 +195,21 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
     comparison: {
       title: "BENCHMARK",
       titleAccent: "GLOBAL.",
-      descLine1: "Comparação técnica calibrada em hardware equivalente.",
-      descLine2: "Nota: O padrão de 100% de inteligência equivale à elite dos modelos de fronteira (e.g. GPT-5.5, Claude 4.8, Gemini 3.1 Pro).",
+      descLine1: "Comparação técnica: ERYX PRO lidera em Qualidade e ERYX FAST lidera em Velocidade.",
+      descLine2: "Ambas as variantes ocupam o topo absoluto mundial em hardware comum e servidores dedicados.",
+      sortLabel: "Ordenar por:",
+      sortRank: "Classificação Geral",
+      sortIntel: "Maior Qualidade / Inteligência",
+      sortSpeed: "Maior Velocidade",
+      tagPro: "Líder em Qualidade",
+      tagFast: "Líder em Velocidade",
       headerModel: "Modelo",
       headerRank: "Rank",
       headerIntel: "Inteligência",
       headerSpeed: "Velocidade",
       headerVision: "Vision",
       headerSearch: "Web Search",
-      updatedAt: "Dados atualizados em Março de 2026",
+      updatedAt: "Dados atualizados em 2026",
       values: {
         ultra: "Ultra",
         instant: "Instante",
@@ -257,22 +250,13 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
       q3: "O Vision Mode aceita quais arquivos?",
       altText3: "Aceitamos imagens (JPG, PNG, WebP) e documentos PDF para análise visual, extração de texto e compreensão de contexto.",
       q4: "A busca na web é em tempo real?",
-      altText4: "Sim. O ERYX AI se conecta aos principais motores de busca para garantir que você tenha informações atualizadas até o presente momento."
+      altText4: "Sim. O ERYX AI se conecta aos principais motores de busca para garantir que você tenha informações atualizadas até o presente momento.",
     },
     footer: {
       desc: "A inteligência artificial que redefine os limites do conhecimento humano. Criada para ser rápida, inteligente e acessível.",
       creator: "CRIADOR: LUCAS SIMIONI",
       navTitle: "Navegação",
-      home: "Início",
-      tech: "Tecnologia",
-      models: "Modelos",
-      roadmap: "Roadmap",
       specsTitle: "ERYX AI v1.0",
-      vision: "Vision Mode",
-      search: "Web Search",
-      engine: "Neural Engine",
-      statusTitle: "Status do Protocolo:",
-      statusDesc: "Atualmente operando em servidor básico (Intel Xeon de entrada). Upgrade agendado e iminente para aceleração por GPU dedicada NVIDIA T4 para velocidade e processamento neural instantâneo.",
       copyright: "© 2026 ERYX AI. Todos os direitos reservados.",
       security: "Protocolo de Segurança Neural Ativo"
     },
@@ -310,8 +294,6 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
       title: "THE ULTIMATE",
       titleAccent: "INTELLIGENCE.",
       desc: "Ultra intelligent, fast, and equipped with built-in Vision Mode and Web Search.",
-      descAccent1: "FAST (Unlimited)",
-      descAccent2: "PRO (Elite)",
       ctaPro: "Activate ERYX PRO",
       ctaTech: "See Technology",
       fastDisclaimer: "ERYX FAST: 100% Free and Unlimited forever.",
@@ -371,15 +353,21 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
     comparison: {
       title: "GLOBAL",
       titleAccent: "BENCHMARK.",
-      descLine1: "Technical comparison calibrated on equivalent hardware.",
-      descLine2: "Note: The 100% intelligence standard is equivalent to the elite frontier models (e.g., GPT-5.5, Claude 4.8, Gemini 3.1 Pro).",
+      descLine1: "Calibrated technical benchmarks: ERYX PRO leads in Quality and ERYX FAST leads in Speed.",
+      descLine2: "Both variants hold the undisputed top world rankings across consumer hardware and dedicated inference clusters.",
+      sortLabel: "Sort by:",
+      sortRank: "Global Ranking",
+      sortIntel: "Top Quality / Intelligence",
+      sortSpeed: "Top Speed",
+      tagPro: "Leader in Quality",
+      tagFast: "Leader in Speed",
       headerModel: "Model",
       headerRank: "Rank",
       headerIntel: "Intelligence",
       headerSpeed: "Speed",
       headerVision: "Vision",
       headerSearch: "Web Search",
-      updatedAt: "Data updated in March 2026",
+      updatedAt: "Data updated in 2026",
       values: {
         ultra: "Ultra",
         instant: "Instant",
@@ -420,22 +408,13 @@ export const translations: Record<'pt' | 'en', TranslationSchema> = {
       q3: "What files does Vision Mode accept?",
       altText3: "We accept images (JPG, PNG, WebP) and PDF documents for visual analysis, text extraction, and context understanding.",
       q4: "Is web search in real-time?",
-      altText4: "Yes. ERYX AI connects to major search engines to ensure you have the most up-to-date information up to the present moment."
+      altText4: "Yes. ERYX AI connects to major search engines to ensure you have the most up-to-date information up to the present moment.",
     },
     footer: {
       desc: "The artificial intelligence that redefines the limits of human knowledge. Built to be fast, intelligent, and affordable.",
       creator: "CREATOR: LUCAS SIMIONI",
       navTitle: "Navigation",
-      home: "Home",
-      tech: "Technology",
-      models: "Models",
-      roadmap: "Roadmap",
       specsTitle: "ERYX AI v1.0",
-      vision: "Vision Mode",
-      search: "Web Search",
-      engine: "Neural Engine",
-      statusTitle: "Protocol Status:",
-      statusDesc: "Currently operating on a basic server (entry-level Intel Xeon). Upgrade scheduled and imminent for dedicated NVIDIA T4 GPU acceleration to deliver instant speed and neural processing.",
       copyright: "© 2026 ERYX AI. All rights reserved.",
       security: "Active Neural Security Protocol"
     },

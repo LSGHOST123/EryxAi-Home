@@ -15,7 +15,7 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api-proxy': {
-        target: 'https://api.example.com', // Substitua pela URL da sua API
+        target: 'https://script.google.com/macros/s/AKfycbzmkNoWvTNRLhW-rNp7WijNAV_9kv5gez6khybt79VequBOfmmeGLHH_P07JIjDUsZ7nQ/exec', 
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api-proxy/, ''),
         secure: false,

@@ -1,5 +1,6 @@
 {
   "name": "ERYX AI",
   "description": "Inteligência Artificial de Alta Performance - Versão 1.0. Modelos FAST e PRO com Vision Mode e Web Search integrados.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
